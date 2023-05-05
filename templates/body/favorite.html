@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+
+
+{% block content %}
+
+<style>
+    .center_text {
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+    }
+</style>
+
+<section>
+    <div class="container">
+            <h1>My Favorites</h1>
+        <div class="row">
+            {% for pro in favorite %}
+            <div class="block">
+                <div class="image">
+                    <img src="{{pro.image.url}}" alt="" />
+                    <div class="bg_color">
+                        <div class="center_text">
+                            <!-- <form action="{% url 'updateCart' pro.id %}" method="GET">
+                                <input type="number" name="quant" id="" min="0" max="{{pro.product.quant}}"
+                                    value="{{pro.quant}}">
+                                <input type="submit" value="Purchase">
+                            </form> -->
+                            <a href="{% url 'addcart' pro.product.id %}">Add to cart</a>
+                            <a href="{%url 'info' pro.product.id%}">View</a>
+                            <a href="{% url 'remove' pro.product.id%}">Delete</a>
+                        </div>
+                    </div>
+                    <div class="text">
+                        <h3>{{pro.title}}</h3>
+                        <p>Price: {{pro.price}}</p>
+                    </div>
+                </div>
+                <div class="discount">
+                    <span>скидка -70%</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

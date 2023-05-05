@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+
+
+{% block content %}
+
+
+<section>
+    <div class="container">
+        <div class="brand" style="display: flex;">
+        <h4 style="padding: 7px 15px;"><a style="color: white; text-decoration: none;" href="{% url 'home' %}">All</a></h4>
+        {% for br in brand %}
+            <h4 style="padding: 7px 15px; "><a style="color: white; text-decoration: none;" href="{% url 'home' %}?q={{br.name}}">{{br.name}}</a></h4>
+        {% endfor %}
+        </div>
+        <h1>POPULAR</h1>
+        <div class="row">
+            {% for pro in product %}
+            {% if pro.quant > 0 %}
+            <div class="block">
+                <div class="image">
+                        <img src="{{pro.image.url}}"
+                            alt="" />
+                    <div class="bg_color">
+                        <div class="center_text">
+                            <a href="{% url 'addcart' pro.id %}">Add to cart</a>
+                            <a href="{% url 'info' pro.id %}">View</a>
+                            <a href="{% url 'favorite' pro.id %}">Like</a>
+                        </div>
+                    </div>
+                    <div class="text">
+                        <h3>{{pro.title}}</h3>
+                        <p>Price: {{pro.price}}</p>
+                        
+                    </div>
+                </div>
+                <div class="discount">
+                    <span>скидка -70%</span>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
+
+

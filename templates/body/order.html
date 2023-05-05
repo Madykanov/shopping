@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+
+
+{% block content %}
+
+<style>
+    .center_text {
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+    }
+</style>
+
+<section>
+    <div class="container">
+            <h1>My Order</h1>
+        <div class="row">
+            {% for pro in order %}
+            <div class="block">
+                <div class="image">
+                    <img src="{{pro.image.url}}" alt="" />
+                    <div class="bg_color">
+                        <div class="center_text">
+                            <a href="#">Quantity: {{pro.quant}}</a>
+                            <a href="#">Price: {{pro.price}}</a>
+                        </div>
+                    </div>
+                    <div class="text">
+                        <h3>{{pro.title}}</h3>
+                        <!-- <p>Quantity: {{pro.quant}}</p> -->
+                        <!-- <p>Price: {{pro.price}}</p> -->
+                        <span>date: {{pro.create_data}}</span>
+                    </div>
+                </div>
+                <div class="discount">
+                    <span>скидка -70%</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
